@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zcbigdata.mybits_demo.mapper.DiscussMapper">
+
+    <resultMap id="BaseResultMap" type="cn.zcbigdata.mybits_demo.entity.Discuss">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="author" jdbcType="VARCHAR" property="author" />
+        <result column="heat" jdbcType="INTEGER" property="heat" />
+        <result column="number" jdbcType="VARCHAR" property="number" />
+        <result column="reply" jdbcType="VARCHAR" property="reply" />
+    </resultMap>
+    <sql id="Base_Column_List" ><!-- id是唯一标识符 和property对应 -->
+        id,title,author,heat,number,reply
+    </sql>
+
+    <select id="selectAll" resultType="cn.zcbigdata.mybits_demo.entity.Discuss">
+        select * from discuss limit #{param1},#{param2}
+    </select>
+    <select id="SelectCount"  resultType="java.lang.Integer" >
+        SELECT count(*) FROM discuss;
+    </select>
+    <insert id="insert">
+        insert into discuss(title,author,heat,number,reply)
+        values (#{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR},#{heat,jdbcType=INTEGER},#{number,jdbcType=VARCHAR},#{reply,jdbcType=VARCHAR})
+    </insert>
+
+
+</mapper>

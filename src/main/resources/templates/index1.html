@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Qingcheng</title>
+    <link rel="stylesheet" href="../static/css/mystyle.css"/>
+    <link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/static/favicon.ico}"/>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+    <script src="../static/js/cookie.js"></script>
+</head>
+<body class="body_bg">
+<div class="whole">
+
+        <div >
+            <label><input type="radio" style="margin-left: 40px;" name="flag" value="1">学生</label>
+            <label><input type="radio" style="margin-left: 40px;" name="flag" value="2">老师</label>
+        <div class="title">Please Enter Your New Password</div>
+        <form id="form1" action="" method="post" class="form_box">
+            <div class="input_tit">学号</div>
+            <div class="input_box">
+                <input class="input_self" type="text" name="account" id="account" />
+            </div>
+            <div class="input_tit">手机号</div>
+            <div class="input_box">
+                <input class="input_self" type="text" name="phonenumber" id="phonenumber" />
+            </div>
+            <div class='blank_30'></div>
+            <div class="input_tit">New Password</div>
+            <div class="input_box">
+                <input class="input_self" type="text" name="password" id="password" />
+            </div>
+            <div class="finish_box">
+                <input class="finish_btn" type="button" id="finish" name="finish" value="Finish" onclick="get()"/>
+            </div>
+        </form>
+    </div>
+
+</div>
+</body>
+<script type="text/javascript">
+    function get(){
+
+        var flag = $("input[name='flag']:checked").val();
+
+        var url = "http://localhost:8080/ChangePassword";
+        var data = {
+            "flag":flag,
+            "account":$("#account").val(),
+            "password":$("#password").val(),
+            "phonenumber":$("#phonenumber").val()
+        };
+        $.ajax({
+            type: "get",//指定提交的类型，get对应doget(),post对应dopost()
+            url: url,
+            data:data,//data代表key -value类型的数据
+
+            dataType:'html',
+            success: function (data)//success、error代表是否返回成功
+            {
+                console.log(data);
+
+            },
+            error:function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(typeof(errorThrown));
+            }
+        });
+    }
+
+
+</script>
+</html>

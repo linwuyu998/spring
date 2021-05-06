@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zcbigdata.mybits_demo.mapper.StudentMapper">
+
+    <resultMap id="BaseResultMap" type="cn.zcbigdata.mybits_demo.entity.Student">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="Sname" jdbcType="VARCHAR" property="Sname" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="number" jdbcType="VARCHAR" property="number" />
+        <result column="classnum" jdbcType="VARCHAR" property="classnum" />
+        <result column="Tname" jdbcType="VARCHAR" property="Tname" />
+        <result column="phonenumber" jdbcType="INTEGER" property="phonenumber" />
+        <result column="type" jdbcType="VARCHAR" property="type" />
+    </resultMap>
+
+    <select id="find" resultType="cn.zcbigdata.mybits_demo.entity.Student">
+        select * from student where number = #{number}
+    </select>
+    <select id="changepassword" resultType="cn.zcbigdata.mybits_demo.entity.Student">
+        select * from student where number = #{number} and phonenumber =#{phonenumber}
+    </select>
+    <update id="update">
+        update student set password=#{password} where number=#{number}
+    </update>
+
+
+
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zcbigdata.mybits_demo.mapper.VideoMapper">
+
+    <resultMap id="BaseResultMap" type="cn.zcbigdata.mybits_demo.entity.Video">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="videoname" jdbcType="VARCHAR" property="videoname" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+        <result column="author" jdbcType="VARCHAR" property="author" />
+    </resultMap>
+    <sql id="Base_Column_List" ><!-- id是唯一标识符 和property对应 -->
+        id,videoname,content,author
+    </sql>
+
+    <select id="selectAll" resultType="cn.zcbigdata.mybits_demo.entity.Video">
+        select * from videolist limit #{param1},#{param2}
+    </select>
+    <select id="SelectCount"  resultType="java.lang.Integer" >
+        SELECT count(*) FROM videolist;
+    </select>
+    <insert id="insert">
+        insert into videolist(videoname,content,author)
+        values (#{videoname,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},#{author,jdbcType=INTEGER})
+    </insert>
+
+
+</mapper>
